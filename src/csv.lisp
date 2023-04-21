@@ -1,4 +1,4 @@
-(in-package :cl-cdsi-case-library)
+(in-package :cl-cdsi-cases)
 
 (defun csv-read (path)
   "Read the csv file and return the list of rows."

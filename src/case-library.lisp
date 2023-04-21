@@ -1,4 +1,4 @@
-(in-package :cl-cdsi-case-library)
+(in-package :cl-cdsi-cases)
 
 (defun mk-catalog (header row)
   (make-catalog :id (csv-value header row "CDC_Test_ID")

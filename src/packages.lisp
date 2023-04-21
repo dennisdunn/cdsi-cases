@@ -1,4 +1,4 @@
-(defpackage :cl-cdsi-case-library
+(defpackage :cl-cdsi-cases
   (:use :cl)
   (:export :get-catalog
            :get-case

@@ -1,5 +1,5 @@
-(in-package :cl-cdsi-case-library)
+(in-package :cl-cdsi-cases)
 
 (defparameter *data-file* (asdf:system-relative-pathname
-                            :cl-cdsi-case-library
+                            :cl-cdsi-cases
                             "data/cdsi-healthy-childhood-and-adult-test-cases-v4.8.csv"))

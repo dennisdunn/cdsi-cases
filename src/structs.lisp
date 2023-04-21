@@ -1,4 +1,4 @@
-(in-package :cl-cdsi-case-library)
+(in-package :cl-cdsi-cases)
 
 (defstruct catalog
   id

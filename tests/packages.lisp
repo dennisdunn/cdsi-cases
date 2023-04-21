@@ -1,6 +1,6 @@
-(defpackage :cl-cdsi-case-library/tests
+(defpackage :cl-cdsi-cases/tests
   (:use :cl
         :rove
-        :cl-cdsi-case-library)
+        :cl-cdsi-cases)
   (:export #:run!
            #:all-tests))
