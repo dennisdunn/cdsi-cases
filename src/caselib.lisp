@@ -1,7 +1,7 @@
 (in-package :cl-cdsi-case-library)
 
 (defun mk-catalog (header row)
- (make-catalog :id (csv-value header row "CDC_Test_ID")
+  (make-catalog :id (csv-value header row "CDC_Test_ID")
                 :name (csv-value header row "TestCase_Name")
                 :text (csv-value header row "General_Description")))
 
@@ -32,7 +32,7 @@
 
 (defun mk-doses (header row)
   (loop for n from 1 to 7
-        when (csv-value header row (format nil "Date_Administered_~a" n))
+          when (csv-value header row (format nil "Date_Administered_~a" n))
         collect (make-dose :number (format nil "~a" n)
                            :date-administered (csv-value header row (format nil "Date_Administered_~a" n))
                            :vaccine-name (csv-value header row (format nil "Vaccine_Name_~a" n))
@@ -44,12 +44,10 @@
 
 (defun get-catalog ()
   "Get a catalog of all testcases."
-  (let* ((path (merge-pathnames *data-path* *file-name*)))
-    (multiple-value-bind (header rows) (csv-read path)
-      (mapcar (lambda (row) (mk-catalog header row)) rows))))
+  (multiple-value-bind (header rows) (csv-read *data-file*)
+    (mapcar (lambda (row) (mk-catalog header row)) rows)))
 
 (defun get-case (id)
   "Load the testcase identified by the argument."
-  (let* ((path (merge-pathnames *data-path* *file-name*)))
-    (multiple-value-bind (header rows) (csv-read path)
-      (mk-testcase header (find-if (lambda (x) (string= id (csv-value header x "CDC_Test_ID"))) rows)))))
+  (multiple-value-bind (header rows) (csv-read *data-file*)
+    (mk-testcase header (find-if (lambda (x) (string= id (csv-value header x "CDC_Test_ID"))) rows))))
