@@ -9,7 +9,7 @@
            :patient
            :patient-dob
            :patient-gender
-           :patient-doses
+           :patient-assessment
            :evaluation
            :forecast
            :dose
