@@ -5,7 +5,11 @@
            :catalog
            :testcase
            :testcase-doses
+           :testcase-patient
            :patient
+           :patient-dob
+           :patient-gender
+           :patient-doses
            :evaluation
            :forecast
            :dose
