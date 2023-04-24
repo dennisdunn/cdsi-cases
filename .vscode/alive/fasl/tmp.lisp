@@ -1,10 +1,25 @@
-(in-package :cl-cdsi-cases/tests)
+(in-package :cl-user)
 
-(deftest test-the-case-library-catalog
-  (testing "load the catalog"
-    (let ((ids (get-catalog)))
-      (ok (= (length ids) 823))))
+(defpackage :cdsi-cases/csv
+  (:use :cl)
+  (:export :csv-read
+           :make-header
+           :csv-value))
 
-  (testing "get a specific testcase from the catalog"
-    (let ((tcase (get-case "2013-0001")))
-      (ok (string= (cl-cdsi-cases::testcase-id tcase) "2013-0001")))))
+(in-package :cdsi-cases/csv)
+
+(defun csv-read (path)
+  "Read the csv file and return the list of rows."
+  (let ((data (cl-csv:read-csv path :unquoted-empty-string-is-nil t
+                               :trim-outer-whitespace t)))
+    (values (make-header (car data)) (cdr data))))
+
+(defun make-header (row)
+  "Take the first row of the testcase file and return an alist mapping column name to column number."
+  (loop for key in row
+        for idx from 0
+        collect (cons key idx)))
+
+(defun csv-value (header row column)
+  "Read the nth item of the row as identified by the header and column name."
+  (nth (cdr (assoc column header :test #'string=)) row))

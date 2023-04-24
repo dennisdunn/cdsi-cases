@@ -1,5 +1,11 @@
-(in-package :cl-cdsi-cases)
+(in-package :cl-user)
+
+(defpackage :cdsi-cases/config
+  (:use :cl)
+  (:export :*data-file*))
+
+(in-package :cdsi-cases/config)
 
 (defparameter *data-file* (asdf:system-relative-pathname
-                            :cl-cdsi-cases
+                            "cdsi-cases"
                             "data/cdsi-healthy-childhood-and-adult-test-cases-v4.8.csv"))

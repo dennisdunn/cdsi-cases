@@ -1,4 +1,72 @@
-(in-package :cl-cdsi-cases)
+(in-package :cl-user)
+
+(defpackage :cdsi-cases
+  (:nicknames :cases)
+  (:use :cl
+        :cdsi-cases/config
+        :cdsi-cases/csv)
+  (:export :catalog
+           :get-case
+           :catalog
+           :testcase
+           :testcase-doses
+           :testcase-patient
+           :patient
+           :patient-dob
+           :patient-gender
+           :patient-assessment
+           :evaluation
+           :forecast
+           :dose
+           :dose-number
+           :dose-date-administered
+           :dose-vaccine-name
+           :dose-cvx
+           :dose-mvx
+           :dose-evaluation-status
+           :dose-evaluation-reason))
+
+(in-package :cdsi-cases)
+
+(defstruct catalog
+  id
+  name
+  text)
+
+(defstruct testcase
+  id
+  name
+  text
+  evaluation
+  forecast
+  patient
+  doses)
+
+(defstruct evaluation
+  series-status
+  evaluation-type)
+
+(defstruct forecast
+  number
+  earliest
+  recommended
+  past-due
+  vaccine-group
+  forecast-type)
+
+(defstruct patient
+  dob
+  gender
+  assessment)
+
+(defstruct dose
+  number
+  date-administered
+  vaccine-name
+  cvx
+  mvx
+  evaluation-status
+  evaluation-reason)
 
 (defun mk-catalog (header row)
   (make-catalog :id (csv-value header row "CDC_Test_ID")
@@ -41,8 +109,7 @@
                            :evaluation-status (csv-value header row (format nil "Evaluation_Status_~a" n))
                            :evaluation-reason (csv-value header row (format nil "Evaluation_Reason_~a" n)))))
 
-
-(defun get-catalog ()
+(defun catalog ()
   "Get a catalog of all testcases."
   (multiple-value-bind (header rows) (csv-read *data-file*)
     (mapcar (lambda (row) (mk-catalog header row)) rows)))

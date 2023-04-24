@@ -1,4 +1,12 @@
-(in-package :cl-cdsi-cases)
+(in-package :cl-user)
+
+(defpackage :cdsi-cases/csv
+  (:use :cl)
+  (:export :csv-read
+           :make-header
+           :csv-value))
+
+(in-package :cdsi-cases/csv)
 
 (defun csv-read (path)
   "Read the csv file and return the list of rows."
