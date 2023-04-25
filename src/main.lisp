@@ -1,12 +1,12 @@
 (in-package :cl-user)
 
-(defpackage :cdsi-cases
+(defpackage :cdsi.cases
   (:use :cl
-        :cdsi-cases/config
-        :cdsi-cases/csv)
+        :cdsi.cases.config
+        :cdsi.cases.csv)
   (:export :catalog
+           :list-cases
            :get-case
-           :catalog
            :testcase
            :testcase-doses
            :testcase-patient
@@ -25,7 +25,7 @@
            :dose-evaluation-status
            :dose-evaluation-reason))
 
-(in-package :cdsi-cases)
+(in-package :cdsi.cases)
 
 (defstruct catalog
   id
@@ -108,7 +108,7 @@
                            :evaluation-status (csv-value header row (format nil "Evaluation_Status_~a" n))
                            :evaluation-reason (csv-value header row (format nil "Evaluation_Reason_~a" n)))))
 
-(defun catalog ()
+(defun list-cases ()
   "Get a catalog of all testcases."
   (multiple-value-bind (header rows) (csv-read *data-file*)
     (mapcar (lambda (row) (mk-catalog header row)) rows)))
