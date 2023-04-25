@@ -8,7 +8,7 @@
            :components ((:module "src"
                                  :components ((:file "config")
                                               (:file "csv")
-                                              (:file "cases"))))
+                                              (:file "main"))))
            :in-order-to ((test-op (test-op "cdsi-cases/tests"))))
 
 (defsystem "cdsi-cases/tests"

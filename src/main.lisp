@@ -1,7 +1,6 @@
 (in-package :cl-user)
 
 (defpackage :cdsi-cases
-  (:nicknames :cases)
   (:use :cl
         :cdsi-cases/config
         :cdsi-cases/csv)
