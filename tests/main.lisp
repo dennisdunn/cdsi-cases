@@ -13,4 +13,4 @@
 
          (testing "get a specific testcase from the case library"
                   (let ((tcase (cdsi.cases:get-case "2013-0001")))
-                    (ok (string= (cdsi.cases::testcase-id tcase) "2013-0001")))))
+                    (ok (string= (getf tcase :id) "2013-0001")))))
