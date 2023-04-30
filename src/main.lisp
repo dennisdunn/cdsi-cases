@@ -54,6 +54,7 @@
   forecast-type)
 
 (defstruct patient
+  id
   dob
   gender
   assessment)
@@ -81,7 +82,8 @@
                  :forecast (mk-forecast header row)
                  :doses (mk-doses header row)))
 (defun mk-patient (header row)
-  (make-patient :dob (csv-value header row "DOB")
+  (make-patient :id (csv-value header row "CDC_Test_ID")
+                :dob (csv-value header row "DOB")
                 :gender (csv-value header row "gender")
                 :assessment (csv-value header row "Assessment_Date")))
 
