@@ -11,6 +11,7 @@
            :testcase-doses
            :testcase-patient
            :patient
+           :patient-id
            :patient-dob
            :patient-gender
            :patient-assessment
